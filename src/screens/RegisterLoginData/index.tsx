@@ -31,9 +31,9 @@ interface FormData {
 }
 
 const schema = Yup.object().shape({
-  title: Yup.string().required('O título é obrigatório!'),
-  email: Yup.string().email('O e-mail não é válido').required('O e-mail é obrigatório!'),
-  password: Yup.string().required('A senha é obrigatória!'),
+  title: Yup.string().required('Título é obrigatório!'),
+  email: Yup.string().email('Email não é válido').required('Email é obrigatório!'),
+  password: Yup.string().required('Senha é obrigatória!'),
 });
 
 export function RegisterLoginData() {
@@ -42,9 +42,7 @@ export function RegisterLoginData() {
     control,
     handleSubmit,
     reset,
-    formState: {
-      errors
-    }
+    formState: { errors }
   } = useForm({
     resolver: yupResolver(schema)
   });
@@ -92,35 +90,29 @@ export function RegisterLoginData() {
             <Input
               title="Título"
               name="title"
-              error={
-                errors.title && errors.title.message
-              }
               control={control}
               placeholder="Escreva o título aqui"
               autoCapitalize="sentences"
               autoCorrect
+              error={ errors.title && errors.title.message }
             />
             <Input
               title="Email"
               name="email"
-              error={
-                errors.email && errors.email.message
-              }
               control={control}
               placeholder="Escreva o Email aqui"
               autoCorrect={false}
               autoCapitalize="none"
               keyboardType="email-address"
+              error={ errors.email && errors.email.message }
             />
             <Input
               title="Senha"
               name="password"
-              error={
-                errors.password && errors.password.message
-              }
               control={control}
               secureTextEntry
               placeholder="Escreva a senha aqui"
+              error={ errors.password && errors.password.message }
             />
 
             <Button
